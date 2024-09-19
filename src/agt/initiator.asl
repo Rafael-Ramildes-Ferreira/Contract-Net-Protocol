@@ -1,15 +1,14 @@
 
 +!call_proposals(ID,M)
     <-  .concat("pool", ID, ArtNameS);
-        .term2string(ArtNameT, ArtNameS);
         pool::makeArtifact(ArtNameS, "pools.ProposalPool", [], ArtId);
         pool::focus(ArtId);
         pool::open(ID,M);
-        .print("Opening a proposal pool named ",ArtNameT,".");
-        .broadcast(tell,open_proposal(ArtId));
+        .print("Opening a proposal pool named ",ArtNameS,".");
+        .broadcast(tell,open_proposal_pool(ArtNameS));
     .
 
-/*+!pool::close_pool(ID)[artifact_name(ArtName)]
++!pool::close_pool(ID)[artifact_name(ArtName)]
     <-  .print("Closing ",ArtName,".");
     .
 
@@ -21,7 +20,7 @@
     <-  .my_name(ME);
         .send(AGENT,tell,not_chosen(ArtId));
     .
-*/
+
 { include("$jacamo/templates/common-cartago.asl") }
 { include("$jacamo/templates/common-moise.asl") }
 

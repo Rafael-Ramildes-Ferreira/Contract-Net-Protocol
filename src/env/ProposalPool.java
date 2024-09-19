@@ -18,7 +18,7 @@ public class ProposalPool extends Artifact {
 	}
 
 	@OPERATION
-	void propose(Object[] proposer) {
+	void propose(Object proposer) {
 		System.out.println("[pool] Receive a propose from " + proposer);
 	}
 
