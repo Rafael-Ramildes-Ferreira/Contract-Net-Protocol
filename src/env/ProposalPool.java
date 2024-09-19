@@ -1,21 +1,22 @@
 // CArtAgO artifact code for project cnp
 
-package example;
+package pools;
 
 import cartago.*;
 
-public class ChosingMachine extends Artifact {
-	void init(int initialValue) {
+
+public class ProposalPool extends Artifact {
+	public void init() {
 		defineObsProperty("status", "not started");
 	}
 
 	@OPERATION
-	void open(Object[] id, Object[] m) {
+	public void open(Object[] id, Object[] m) {
 		updateObsProperty("status", "open");
 	}
 
 	@OPERATION
-	void propose(Object[] proposer) {
+	public void propose(Object[] proposer) {
 		System.out.println("Receive a propose from " + proposer);
 	}
 

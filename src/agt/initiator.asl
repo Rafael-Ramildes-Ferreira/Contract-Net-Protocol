@@ -1,15 +1,15 @@
 
-+!call_proposal(ID,M)
-    :   ArtId = 1
-    <-  .concat("proposal", ID, ArtNameS);
++!call_proposals(ID,M)
+    <-  .concat("pool", ID, ArtNameS);
         .term2string(ArtNameT, ArtNameS);
-        //art::makeArtifact(ArtNameS, "ChosingMachine", [], ArtId);
-        //art::open(ID,m);
-        .print("Opening a proposal named ",ArtNameT,".");
+        /*vm::makeArtifact(ArtNameS, "ChosingMachine", [], ArtId);
+        vm::focus(ArtId);
+        open(ID,M);*/
+        .print("Opening a proposal pool named ",ArtNameT,".");
         .broadcast(tell,open_proposal(ArtId));
     .
 
-/*+!art::close_proposal(ID)[artifact_name(ArtName)]
+/*+!art::close_pool(ID)[artifact_name(ArtName)]
     <-  .print("Closing ",ArtName,".");
     .
 
