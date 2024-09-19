@@ -16,13 +16,13 @@ mas cnp {
 
     agent in1: initiator.asl {
         goals : call_proposals(1,1)
-        focus : c
+        // focus : c
     }
 
     agent par1: participator.asl
 
     workspace env {
-        artifact c : pools.ProposalPool()
+    //     artifact c : pools.ProposalPool()
     }
 
 }

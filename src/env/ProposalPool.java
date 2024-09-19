@@ -6,18 +6,20 @@ import cartago.*;
 
 
 public class ProposalPool extends Artifact {
-	public void init() {
+	void init() {
 		defineObsProperty("status", "not started");
+		System.out.println("[pool] Proposal pool created");
 	}
 
 	@OPERATION
-	public void open(Object[] id, Object[] m) {
+	void open(int id, int m) {
 		updateObsProperty("status", "open");
+		System.out.println("[pool] Proposal pool started");
 	}
 
 	@OPERATION
-	public void propose(Object[] proposer) {
-		System.out.println("Receive a propose from " + proposer);
+	void propose(Object[] proposer) {
+		System.out.println("[pool] Receive a propose from " + proposer);
 	}
 
 }
