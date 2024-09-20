@@ -4,7 +4,10 @@
         // I could just transmit the ID, however I need to lookup for artefacts anyways
         // to be able to focus, only having the ID is not enough
         pool::focus(ArtId);
-        .my_name(ME);
+    .
+
++pool::status("open")
+    <-  .my_name(ME);
         pool::propose(ME);
         +pending_job(INIT,ArtId);
     .
