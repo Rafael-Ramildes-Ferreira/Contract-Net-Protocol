@@ -8,7 +8,7 @@
         .broadcast(tell,open_proposal_pool(ArtNameS));
     .
 
-+!pool::status("closed")[artifact_name(ArtName)]
++pool::status("closed")[artifact_name(ArtName)]
     <-  .print("Closing ",ArtName,".");
     .
 
