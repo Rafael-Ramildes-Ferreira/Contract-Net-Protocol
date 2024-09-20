@@ -5,7 +5,6 @@
         // to be able to focus, only having the ID is not enough
         pool::focus(ArtId);
         .my_name(ME);
-        +name_of_mine(ME);
         pool::propose(ME);
         +pending_job(INIT,ArtId);
     .
