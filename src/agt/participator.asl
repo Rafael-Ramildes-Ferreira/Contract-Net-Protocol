@@ -10,7 +10,6 @@
     <-  .my_name(ME);
         pool::propose(ME);
         +pending_job(ArtId);
-        -teste(testando);
     .
 
 +!do_the_job(ArtId)[source(INIT)] 
