@@ -1,27 +1,27 @@
 
-+!call_proposal(ID,M)
-    :   ArtId = 1
-    <-  .concat("proposal", ID, ArtNameS);
-        .term2string(ArtNameT, ArtNameS);
-        //art::makeArtifact(ArtNameS, "ChosingMachine", [], ArtId);
-        //art::open(ID,m);
-        .print("Opening a proposal named ",ArtNameT,".");
-        .broadcast(tell,open_proposal(ArtId));
++!call_proposals(ID,M)
+    <-  .concat("pool", ID, ArtNameS);
+        pool::makeArtifact(ArtNameS, "pools.ProposalPool", [], ArtId);
+        pool::focus(ArtId);
+        pool::open(ID,M);
+        .print("Opening a proposal pool named ",ArtNameS,".");
+        .broadcast(tell,open_proposal_pool(ArtNameS));
     .
 
-/*+!art::close_proposal(ID)[artifact_name(ArtName)]
++pool::status("closed")[artifact_name(ArtName)]
     <-  .print("Closing ",ArtName,".");
+        .broadcast(untell,open_proposal_pool(ArtNameS));
     .
 
-+art::chosen(AGENT)[artifact_id(ArtId)]  // One for each chosen participator
++pool::chosen(AGENT)[artifact_id(ArtId)]  // One for each chosen participator
     <-  .send(AGENT,achieve,do_the_job(ArtId));
     .
 
-+art::not_chosen(AGENT)[artifact_id(ArtId)]  // One for each not chosen participator
++pool::not_chosen(AGENT)[artifact_id(ArtId)]  // One for each not chosen participator
     <-  .my_name(ME);
         .send(AGENT,tell,not_chosen(ArtId));
     .
-*/
+
 { include("$jacamo/templates/common-cartago.asl") }
 { include("$jacamo/templates/common-moise.asl") }
 
