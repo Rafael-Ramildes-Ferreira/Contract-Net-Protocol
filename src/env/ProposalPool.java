@@ -2,11 +2,17 @@
 
 package pools;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import cartago.*;
 
 
 public class ProposalPool extends Artifact {
+	private List<String> prposers;
+
 	public void init() {
+		this.prposers = new ArrayList<>();
 		defineObsProperty("status", "not started");
 		System.out.println("[pool] Proposal pool created");
 	}
@@ -23,12 +29,18 @@ public class ProposalPool extends Artifact {
 	public void close() {
 		updateObsProperty("status", "closed");
 		System.out.println("[pool] Proposal pool has ended");
+		if(this.prposers != null){
+			for(String p : this.prposers){
+				defineObsProperty("not_chosen", p);
+			}
+		}
 	}
 
 	@OPERATION
 	public void propose(Object proposer) {
 		if(getObsProperty("status").getValue() == "open"){
 			System.out.println("[pool] Receive a propose from " + proposer);
+			this.prposers.add(proposer.toString());
 		} else {
 			System.out.println("[pool] Refuse a propose from " + proposer + " due to timeout");
 		} 
