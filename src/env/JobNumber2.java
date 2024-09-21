@@ -16,7 +16,7 @@ public class JobNumber2 extends Artifact {
 	 * 				Sets WCET to 1000 ms as default
 	 */
 	@OPERATION
-	public void do_the_job(int wcet, OpFeedbackParam<Object> retval){
+	public void do_the_job(double wcet, OpFeedbackParam<Object> retval){
 		System.out.println("[Job2] Starting the job");
 
 		// This is both for safety and to be used to induce a failed execution if needed
@@ -27,7 +27,7 @@ public class JobNumber2 extends Artifact {
 		}
   
 		try{
-	  		Thread.sleep(wcet);
+	  		Thread.sleep((int) wcet);
 		} catch (InterruptedException e) {
             Thread.currentThread().interrupt();  // Restore interrupted status
 		}

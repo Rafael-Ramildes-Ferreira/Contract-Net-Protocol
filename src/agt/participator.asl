@@ -1,14 +1,25 @@
+start.
 
++start 
+    <-  .random(X);
+        +wcet(X*3000);   // WCET \in [0, 3000 ms]
+        .random(Y);
+        +cost(Y);        // Doesn't matter the scale
+    .
+    
 +open_proposal_pool(ArtId,JobName)[source(INIT)]
-    :   focusing(_,_,JobName,_,_,_)
+    :   focusing(_,_,JobName,_,_,_) &
+        wcet(X) &
+        cost(Y)
     <-  .my_name(ME);
-        .send(INIT,tell,propose(ME));
+        .send(INIT,tell,propose(ME,X,Y));
         +pending_job(ArtId);
     .
 
 +!do_the_job(ArtId)[source(INIT)] 
-    : pending_job(ArtId)
-    <-  do_the_job(RET);
+    :   pending_job(ArtId) &
+        wcet(X)
+    <-  do_the_job(X,RET);
         .my_name(ME);
         .send(INIT,tell,return_value(ME,RET));
     .
