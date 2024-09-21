@@ -1,4 +1,3 @@
-start.
 
 +open_proposal_pool(ArtId)[source(INIT)]
     <-  .send(INIT,tell,propose);
@@ -7,23 +6,13 @@ start.
 
 +!do_the_job(ArtId)[source(INIT)] 
     : pending_job(ArtId)
-    <-  RET = "Done";
-        // Do something with a return value RET
-        +retval(RET);
-        .term2string(RET_T, RET);
-        //.string2term(RET,RET_T);
-        +retval_t(RET_T);
-        .send(INIT,tell,RET_T);
+    <-  do_the_job(RET);
+        .send(INIT,tell,return_value(RET));
     .
 
 +not_chosen(ArtId)
     <-  .print(":(");
         -pending_job(ArtId);
-    .
-
-+start
-    <-  do_the_job(RET);
-        .print(RET);
     .
 
 { include("$jacamo/templates/common-cartago.asl") }

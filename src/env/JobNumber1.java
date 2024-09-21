@@ -21,6 +21,7 @@ public class JobNumber1 extends Artifact {
 
 		// This is both for safety and to be used to induce a failed execution if needed
 		if(wcet < 0){
+			System.out.println("[Job] Job failed");
 			retval.set("Execution Failed");
 			return;
 		}
@@ -31,6 +32,7 @@ public class JobNumber1 extends Artifact {
             Thread.currentThread().interrupt();  // Restore interrupted status
 		}
 
+		System.out.println("[Job] Job done");
 		retval.set("Done");
 		return;
 	}

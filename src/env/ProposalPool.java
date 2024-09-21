@@ -31,7 +31,7 @@ public class ProposalPool extends Artifact {
 		System.out.println("[pool] Proposal pool has ended");
 		if(this.prposers != null){
 			for(String p : this.prposers){
-				defineObsProperty("not_chosen", p);
+				defineObsProperty("chosen", p);
 			}
 		}
 	}
