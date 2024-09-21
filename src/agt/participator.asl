@@ -1,6 +1,7 @@
 
 +open_proposal_pool(ArtId)[source(INIT)]
-    <-  .send(INIT,tell,propose);
+    <-  .my_name(ME);
+        .send(INIT,tell,propose(ME));
         +pending_job(ArtId);
     .
 

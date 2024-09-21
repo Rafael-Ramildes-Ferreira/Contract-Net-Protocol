@@ -8,7 +8,7 @@
         .broadcast(tell,open_proposal_pool(ArtId));
     .
 
-+propose[source(AGENT)]
++propose(AGENT)[source(AGENT)]
     <-  pool::propose(AGENT);
     .
 
