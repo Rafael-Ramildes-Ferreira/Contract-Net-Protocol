@@ -1,11 +1,14 @@
 
 +!call_proposals(ID,M)
-    <-  .concat("pool", ID, ArtNameS);
+    :   desired_job(JobName)
+    <-  .my_name(ME);
+        .concat(ME, "pool", MyPool);
+        .concat(MyPool, ID, ArtNameS);
         pool::makeArtifact(ArtNameS, "pools.ProposalPool", [], ArtId);
         pool::focus(ArtId);
         pool::open(ID,M);
         .print("Opening a proposal pool named ",ArtNameS,".");
-        .broadcast(tell,open_proposal_pool(ArtId));
+        .broadcast(tell,open_proposal_pool(ArtId,JobName));
     .
 
 +propose(AGENT)[source(AGENT)]

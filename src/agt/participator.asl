@@ -1,5 +1,6 @@
 
-+open_proposal_pool(ArtId)[source(INIT)]
++open_proposal_pool(ArtId,JobName)[source(INIT)]
+    :   focusing(_,_,JobName,_,_,_)
     <-  .my_name(ME);
         .send(INIT,tell,propose(ME));
         +pending_job(ArtId);
