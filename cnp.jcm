@@ -23,9 +23,14 @@ mas cnp {
         focus : job1
     }
 
+    agent par2: participator.asl {
+        focus : job2
+    }
+
     workspace env {
     //     artifact c : pools.ProposalPool()
         artifact job1 : jobs.JobNumber1()
+        artifact job2 : jobs.JobNumber2()
     }
 
 }

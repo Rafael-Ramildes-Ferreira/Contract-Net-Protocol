@@ -3,10 +3,10 @@ package jobs;
 import cartago.*;
 
 
-public class JobNumber1 extends Artifact {
+public class JobNumber2 extends Artifact {
 	// Don't know if it's necessary
 	public void init() {
-		System.out.println("[Job1] Starting JobNumber1 Artifact");
+		System.out.println("[Job2] Starting JobNumber1 Artifact");
 		return;
 	}
 
@@ -17,11 +17,11 @@ public class JobNumber1 extends Artifact {
 	 */
 	@OPERATION
 	public void do_the_job(int wcet, OpFeedbackParam<Object> retval){
-		System.out.println("[Job1] Starting the job");
+		System.out.println("[Job2] Starting the job");
 
 		// This is both for safety and to be used to induce a failed execution if needed
 		if(wcet < 0){
-			System.out.println("[Job1] Job failed");
+			System.out.println("[Job2] Job failed");
 			retval.set("Execution Failed");
 			return;
 		}
@@ -32,7 +32,7 @@ public class JobNumber1 extends Artifact {
             Thread.currentThread().interrupt();  // Restore interrupted status
 		}
 
-		System.out.println("[Job1] Job done");
+		System.out.println("[Job2] Job done");
 		retval.set("Done");
 		return;
 	}

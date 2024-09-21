@@ -8,7 +8,8 @@
 +!do_the_job(ArtId)[source(INIT)] 
     : pending_job(ArtId)
     <-  do_the_job(RET);
-        .send(INIT,tell,return_value(RET));
+        .my_name(ME);
+        .send(INIT,tell,return_value(ME,RET));
     .
 
 +not_chosen(ArtId)
