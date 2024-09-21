@@ -5,7 +5,11 @@
         pool::focus(ArtId);
         pool::open(ID,M);
         .print("Opening a proposal pool named ",ArtNameS,".");
-        .broadcast(tell,open_proposal_pool(ArtNameS));
+        .broadcast(tell,open_proposal_pool(ArtId));
+    .
+
++propose(AGENT)[source(AGENT)]
+    <-  pool::propose(AGENT);
     .
 
 +pool::status("closed")[artifact_name(ArtName)]
