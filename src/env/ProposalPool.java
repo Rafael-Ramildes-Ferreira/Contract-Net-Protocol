@@ -56,6 +56,14 @@ public class ProposalPool extends Artifact {
 	}
 
 	@OPERATION
+	public void re_open() {
+		updateObsProperty("status", "open");
+		System.out.println("[pool] Proposal pool restarted");
+
+		execInternalOp("countdown");
+	}
+
+	@OPERATION
 	public void close() {
 		updateObsProperty("status", "closed");
 		System.out.println("[pool] Proposal pool has ended");
@@ -72,6 +80,8 @@ public class ProposalPool extends Artifact {
 					defineObsProperty("not_chosen", p.getName());
 				}
 			}
+		} else {
+			defineObsProperty("no_proposals", null);
 		}
 	}
 

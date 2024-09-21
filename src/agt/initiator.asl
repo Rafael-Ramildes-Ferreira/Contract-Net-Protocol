@@ -47,6 +47,10 @@ chossing_method("wcet").
         .send(AGENT,tell,not_chosen(ArtId));
     .
 
++pool::no_proposals
+    <- pool::re_open(ID,M);
+    .
+
 { include("$jacamo/templates/common-cartago.asl") }
 { include("$jacamo/templates/common-moise.asl") }
 
