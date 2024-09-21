@@ -14,13 +14,13 @@
 
 mas cnp {
 
-    agent in1: initiator.asl {
+    agent init1: initiator.asl {
         goals : call_proposals(1,1)
         beliefs : desired_job("jobs.JobNumber1")
     }
 
-    agent in2: initiator.asl {
-        goals : call_proposals(2,1)
+    agent init2: initiator.asl {
+        goals : call_proposals(1,1)
         beliefs : desired_job("jobs.JobNumber2")
     }
 

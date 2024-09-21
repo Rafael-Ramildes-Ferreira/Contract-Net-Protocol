@@ -1,7 +1,9 @@
 
 +!call_proposals(ID,M)
     :   desired_job(JobName)
-    <-  .concat("pool", ID, ArtNameS);
+    <-  .my_name(ME);
+        .concat(ME, "pool", MyPool);
+        .concat(MyPool, ID, ArtNameS);
         pool::makeArtifact(ArtNameS, "pools.ProposalPool", [], ArtId);
         pool::focus(ArtId);
         pool::open(ID,M);
