@@ -1,3 +1,4 @@
+start.
 
 +open_proposal_pool(ArtId)[source(INIT)]
     <-  .send(INIT,tell,propose);
@@ -18,6 +19,11 @@
 +not_chosen(ArtId)
     <-  .print(":(");
         -pending_job(ArtId);
+    .
+
++start
+    <-  do_the_job(RET);
+        .print(RET);
     .
 
 { include("$jacamo/templates/common-cartago.asl") }
