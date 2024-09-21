@@ -5,7 +5,7 @@
         pool::focus(ArtId);
         pool::open(ID,M);
         .print("Opening a proposal pool named ",ArtNameS,".");
-        .broadcast(tell,open_proposal_pool(ArtId));
+        .broadcast(tell,open_proposal_pool(ArtId,"jobs.JobNumber2"));
     .
 
 +propose(AGENT)[source(AGENT)]
