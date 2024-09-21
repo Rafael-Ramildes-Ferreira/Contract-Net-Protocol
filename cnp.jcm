@@ -14,23 +14,49 @@
 
 mas cnp {
 
-    agent init1: initiator.asl {
+    agent init11: initiator.asl {
         goals : call_proposals(1,1)
         beliefs : desired_job("jobs.JobNumber1")
+        beliefs : chossing_method("arrival")
     }
 
-    agent init2: initiator.asl {
+    agent init12: initiator.asl {
+        goals : call_proposals(1,1)
+        beliefs : desired_job("jobs.JobNumber1")
+        beliefs : chossing_method("cost")
+    }
+
+    agent init13: initiator.asl {
+        goals : call_proposals(1,1)
+        beliefs : desired_job("jobs.JobNumber1")
+        beliefs : chossing_method("wcet")
+    }
+
+    agent init21: initiator.asl {
         goals : call_proposals(1,1)
         beliefs : desired_job("jobs.JobNumber2")
+        beliefs : chossing_method("arrival")
+    }
+
+    agent init22: initiator.asl {
+        goals : call_proposals(1,1)
+        beliefs : desired_job("jobs.JobNumber2")
+        beliefs : chossing_method("cost")
+    }
+
+    agent init23: initiator.asl {
+        goals : call_proposals(1,1)
+        beliefs : desired_job("jobs.JobNumber2")
+        beliefs : chossing_method("wcet")
     }
 
     agent par1: participator.asl {
-        instances: 2
+        instances: 10
         focus : job1
     }
 
     agent par2: participator.asl {
-        instances: 2
+        instances: 10
         focus : job2
     }
 

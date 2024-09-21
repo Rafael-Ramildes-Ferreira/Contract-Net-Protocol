@@ -1,3 +1,4 @@
+chossing_method("wcet").
 
 +!call_proposals(ID,M)
     :   desired_job(JobName)
@@ -17,10 +18,23 @@
     .
 
 +pool::status("closed")[artifact_name(ArtName)]
+    :   chossing_method("arrival")
     <-  .print("Closing ",ArtName,".");
         .broadcast(untell,open_proposal_pool(ArtNameS));
-        //pool::choose_by_arrival;
-        //pool::choose_by_cost;
+        pool::choose_by_arrival;
+    .
+
++pool::status("closed")[artifact_name(ArtName)]
+    :   chossing_method("cost")
+    <-  .print("Closing ",ArtName,".");
+        .broadcast(untell,open_proposal_pool(ArtNameS));
+        pool::choose_by_cost;
+    .
+
++pool::status("closed")[artifact_name(ArtName)]
+    :   chossing_method("wcet")
+    <-  .print("Closing ",ArtName,".");
+        .broadcast(untell,open_proposal_pool(ArtNameS));
         pool::choose_by_wcet;
     .
 
