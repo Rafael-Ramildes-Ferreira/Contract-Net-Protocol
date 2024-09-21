@@ -4,6 +4,7 @@ package pools;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import cartago.*;
 
@@ -58,6 +59,10 @@ public class ProposalPool extends Artifact {
 	public void close() {
 		updateObsProperty("status", "closed");
 		System.out.println("[pool] Proposal pool has ended");
+	}
+
+	@OPERATION
+	public void choose_by_arrival() {
 		if(this.prposers != null){
 			int i = 0;
 			for(TaskProposal p : this.prposers){
@@ -68,6 +73,20 @@ public class ProposalPool extends Artifact {
 				}
 			}
 		}
+	}
+
+	@OPERATION
+	public void choose_by_cost() {
+		this.prposers.sort(Comparator.comparing(TaskProposal::getCost));
+
+		this.choose_by_arrival();
+	}
+
+	@OPERATION
+	public void choose_by_wcet() {
+		this.prposers.sort(Comparator.comparing(TaskProposal::getWcet));
+
+		this.choose_by_arrival();
 	}
 
 	@OPERATION

@@ -19,6 +19,9 @@
 +pool::status("closed")[artifact_name(ArtName)]
     <-  .print("Closing ",ArtName,".");
         .broadcast(untell,open_proposal_pool(ArtNameS));
+        //pool::choose_by_arrival;
+        //pool::choose_by_cost;
+        pool::choose_by_wcet;
     .
 
 +pool::chosen(AGENT)[artifact_id(ArtId)]  // One for each chosen participator
