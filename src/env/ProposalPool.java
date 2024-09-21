@@ -9,7 +9,33 @@ import cartago.*;
 
 
 public class ProposalPool extends Artifact {
-	private List<String> prposers;
+	private class TaskProposal {
+		private String Name;
+		private double wcet;
+		private double cost;
+	
+		// Constructor
+		public TaskProposal(String Name, double wcet, double cost) {
+			this.Name = Name;
+			this.wcet = wcet;
+			this.cost = cost;
+		}
+	
+		// Getters
+		public String getName() {
+			return this.Name;
+		}
+	
+		public double getWcet() {
+			return this.wcet;
+		}
+	
+		public double getCost() {
+			return this.cost;
+		}
+	}
+
+	private List<TaskProposal> prposers;
 
 	public void init() {
 		this.prposers = new ArrayList<>();
@@ -30,17 +56,17 @@ public class ProposalPool extends Artifact {
 		updateObsProperty("status", "closed");
 		System.out.println("[pool] Proposal pool has ended");
 		if(this.prposers != null){
-			for(String p : this.prposers){
-				defineObsProperty("chosen", p);
+			for(TaskProposal p : this.prposers){
+				defineObsProperty("chosen", p.getName());
 			}
 		}
 	}
 
 	@OPERATION
-	public void propose(Object proposer) {
+	public void propose(Object proposer, double wcet, double cost) {
 		if(getObsProperty("status").getValue() == "open"){
 			System.out.println("[pool] Receive a propose from " + proposer);
-			this.prposers.add(proposer.toString());
+			this.prposers.add(new TaskProposal(proposer.toString(), wcet, cost));
 		} else {
 			System.out.println("[pool] Refuse a propose from " + proposer + " due to timeout");
 		} 

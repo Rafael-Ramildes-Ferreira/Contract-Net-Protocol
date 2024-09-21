@@ -11,8 +11,8 @@
         .broadcast(tell,open_proposal_pool(ArtId,JobName));
     .
 
-+propose(AGENT)[source(AGENT)]
-    <-  pool::propose(AGENT);
++propose(AGENT,X,Y)[source(AGENT)]
+    <-  pool::propose(AGENT,X,Y);
     .
 
 +pool::status("closed")[artifact_name(ArtName)]
