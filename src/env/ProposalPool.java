@@ -36,6 +36,7 @@ public class ProposalPool extends Artifact {
 	}
 
 	private List<TaskProposal> prposers;
+	private int number_to_choose;
 
 	public void init() {
 		this.prposers = new ArrayList<>();
@@ -45,6 +46,8 @@ public class ProposalPool extends Artifact {
 
 	@OPERATION
 	public void open(int id, int m) {
+		this.number_to_choose = m;
+
 		updateObsProperty("status", "open");
 		System.out.println("[pool] Proposal pool started");
 
@@ -56,8 +59,13 @@ public class ProposalPool extends Artifact {
 		updateObsProperty("status", "closed");
 		System.out.println("[pool] Proposal pool has ended");
 		if(this.prposers != null){
+			int i = 0;
 			for(TaskProposal p : this.prposers){
-				defineObsProperty("chosen", p.getName());
+				if(i++ < this.number_to_choose){
+					defineObsProperty("chosen", p.getName());
+				} else {
+					defineObsProperty("not_chosen", p.getName());
+				}
 			}
 		}
 	}

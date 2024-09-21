@@ -25,10 +25,12 @@ mas cnp {
     }
 
     agent par1: participator.asl {
+        instances: 2
         focus : job1
     }
 
     agent par2: participator.asl {
+        instances: 2
         focus : job2
     }
 
