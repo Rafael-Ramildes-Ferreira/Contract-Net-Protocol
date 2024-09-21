@@ -19,10 +19,13 @@ mas cnp {
         // focus : c
     }
 
-    agent par1: participator.asl
+    agent par1: participator.asl {
+        focus : job1
+    }
 
     workspace env {
     //     artifact c : pools.ProposalPool()
+        artifact job1 : jobs.JobNumber1()
     }
 
 }

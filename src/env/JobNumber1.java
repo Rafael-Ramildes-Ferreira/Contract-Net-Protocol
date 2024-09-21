@@ -1,11 +1,12 @@
-package Jobs;
+package jobs;
 
 import cartago.*;
 
 
-public class JobNumber1 extends Artifact{
+public class JobNumber1 extends Artifact {
 	// Don't know if it's necessary
-	public void init(){
+	public void init() {
+		System.out.println("[Job] Starting JobNumber1 Artifact");
 		return;
 	}
 

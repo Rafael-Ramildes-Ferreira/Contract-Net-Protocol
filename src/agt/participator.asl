@@ -1,21 +1,18 @@
 
-+open_proposal_pool(ArtName)[source(INIT)]
-    <-  lookupArtifact(ArtName, ArtId); 
-        // I could just transmit the ID, however I need to lookup for artefacts anyways
-        // to be able to focus, only having the ID is not enough
-        pool::focus(ArtId);
-    .
-
-+pool::status("open")[artifact_id(ArtId)] 
-    <-  .my_name(ME);
-        pool::propose(ME);
++open_proposal_pool(ArtId)[source(INIT)]
+    <-  .send(INIT,tell,propose);
         +pending_job(ArtId);
     .
 
 +!do_the_job(ArtId)[source(INIT)] 
     : pending_job(ArtId)
-    <-  // Do something with a return value RET
-        .send(tell,INIT,RET);
+    <-  RET = "Done";
+        // Do something with a return value RET
+        +retval(RET);
+        .term2string(RET_T, RET);
+        //.string2term(RET,RET_T);
+        +retval_t(RET_T);
+        .send(INIT,tell,RET_T);
     .
 
 +not_chosen(ArtId)
