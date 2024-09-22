@@ -1,4 +1,3 @@
-chossing_method("wcet").
 
 +!call_proposals(ID,M)
     :   desired_job(JobName)
