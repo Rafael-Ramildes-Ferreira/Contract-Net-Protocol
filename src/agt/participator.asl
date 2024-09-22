@@ -12,7 +12,7 @@ start.
         wcet(X) &
         cost(Y)
     <-  .my_name(ME);
-        .send(INIT,tell,propose(ME,X,Y));
+        .send(INIT,achieve,propose(ME,X,Y));
         +pending_job(ArtName);
     .
 

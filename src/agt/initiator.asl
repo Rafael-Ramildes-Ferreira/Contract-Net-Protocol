@@ -13,7 +13,7 @@
         .broadcast(tell,open_proposal_pool(ArtNameT,JobName));
     .
 
-+propose(AGENT,X,Y)[source(AGENT)]
++!propose(AGENT,X,Y)[source(AGENT)]
     <-  pool::propose(AGENT,X,Y);
     .
 
