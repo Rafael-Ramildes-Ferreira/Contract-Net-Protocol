@@ -10,7 +10,11 @@
         pool::focus(ArtId);
         pool::open(ID,M);
         .print("Opening a proposal pool named ",ArtNameS,".");
-        .broadcast(achieve,send_proposals(ArtNameT,JobName));
+    .
+
++pool::status("open")[artifact_name(ArtName)]
+    :   desired_job(JobName)
+    <-  .broadcast(achieve,send_proposals(ArtName,JobName));
     .
 
 +!propose(AGENT,X,Y)[source(AGENT)]
