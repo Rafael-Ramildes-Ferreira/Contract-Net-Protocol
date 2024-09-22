@@ -1,19 +1,19 @@
-chossing_method("wcet").
 
 +!call_proposals(ID,M)
     :   desired_job(JobName)
-    <-  .wait(50);
+    <-  .wait(500);
         .my_name(ME);
         .concat(ME, "pool", MyPool);
         .concat(MyPool, ID, ArtNameS);
+        .term2string(ArtNameT,ArtNameS);
         pool::makeArtifact(ArtNameS, "pools.ProposalPool", [], ArtId);
         pool::focus(ArtId);
         pool::open(ID,M);
         .print("Opening a proposal pool named ",ArtNameS,".");
-        .broadcast(tell,open_proposal_pool(ArtId,JobName));
+        .broadcast(achieve,send_proposals(ArtNameT,JobName));
     .
 
-+propose(AGENT,X,Y)[source(AGENT)]
++!propose(AGENT,X,Y)[source(AGENT)]
     <-  pool::propose(AGENT,X,Y);
     .
 
@@ -38,13 +38,14 @@ chossing_method("wcet").
         pool::choose_by_wcet;
     .
 
-+pool::chosen(AGENT)[artifact_id(ArtId)]  // One for each chosen participator
-    <-  .send(AGENT,achieve,do_the_job(ArtId));
++pool::chosen(AGENT)[artifact_name(ArtName)]  // One for each chosen participator
+    <-  .send(AGENT,tell,chosen(ArtName));
+        .send(AGENT,achieve,do_the_job(ArtName));
     .
 
-+pool::not_chosen(AGENT)[artifact_id(ArtId)]  // One for each not chosen participator
++pool::not_chosen(AGENT)[artifact_name(ArtName)]  // One for each not chosen participator
     <-  .my_name(ME);
-        .send(AGENT,tell,not_chosen(ArtId));
+        .send(AGENT,tell,not_chosen(ArtName));
     .
 
 +pool::no_proposals
