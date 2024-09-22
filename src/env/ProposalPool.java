@@ -36,11 +36,11 @@ public class ProposalPool extends Artifact {
 		}
 	}
 
-	private List<TaskProposal> prposers;
+	private List<TaskProposal> proposers;
 	private int number_to_choose;
 
 	public void init() {
-		this.prposers = new ArrayList<>();
+		this.proposers = new ArrayList<>();
 		defineObsProperty("status", "not started");
 		System.out.println("[pool] Proposal pool created");
 	}
@@ -71,9 +71,9 @@ public class ProposalPool extends Artifact {
 
 	@OPERATION
 	public void choose_by_arrival() {
-		if(this.prposers != null){
+		if(this.proposers != null){
 			int i = 0;
-			for(TaskProposal p : this.prposers){
+			for(TaskProposal p : this.proposers){
 				if(i++ < this.number_to_choose){
 					defineObsProperty("chosen", p.getName());
 				} else {
@@ -87,14 +87,14 @@ public class ProposalPool extends Artifact {
 
 	@OPERATION
 	public void choose_by_cost() {
-		this.prposers.sort(Comparator.comparing(TaskProposal::getCost));
+		this.proposers.sort(Comparator.comparing(TaskProposal::getCost));
 
 		this.choose_by_arrival();
 	}
 
 	@OPERATION
 	public void choose_by_wcet() {
-		this.prposers.sort(Comparator.comparing(TaskProposal::getWcet));
+		this.proposers.sort(Comparator.comparing(TaskProposal::getWcet));
 
 		this.choose_by_arrival();
 	}
@@ -103,7 +103,7 @@ public class ProposalPool extends Artifact {
 	public void propose(Object proposer, double wcet, double cost) {
 		if(getObsProperty("status").getValue() == "open"){
 			System.out.println("[pool] Receive a propose from " + proposer);
-			this.prposers.add(new TaskProposal(proposer.toString(), wcet, cost));
+			this.proposers.add(new TaskProposal(proposer.toString(), wcet, cost));
 		} else {
 			System.out.println("[pool] Refuse a propose from " + proposer + " due to timeout");
 		} 
