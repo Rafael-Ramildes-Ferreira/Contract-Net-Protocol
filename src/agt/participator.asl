@@ -7,12 +7,12 @@ start.
         +cost(Y);        // Doesn't matter the scale
     .
     
-+open_proposal_pool(ArtName,JobName)[source(INIT)]
++!send_proposals(ArtName,JobName)[source(INIT)]
     :   focusing(_,_,JobName,_,_,_) &
         wcet(X) &
         cost(Y)
     <-  .my_name(ME);
-        .send(INIT,tell,propose(ME,X,Y));
+        .send(INIT,achieve,propose(ME,X,Y));
         +pending_job(ArtName);
     .
 
@@ -22,12 +22,12 @@ start.
     <-  do_the_job(X,RET);
         .my_name(ME);
         .send(INIT,tell,return_value(ME,RET));
+        -pending_job(ArtName);
     .
 
 +not_chosen(ArtName)
     <-  .print(":(");
         -pending_job(ArtName);
-        +art_name(ArtName);
     .
 
 { include("$jacamo/templates/common-cartago.asl") }
