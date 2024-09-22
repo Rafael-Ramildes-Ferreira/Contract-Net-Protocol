@@ -1,15 +1,16 @@
 
 +!call_proposals(ID,M)
     :   desired_job(JobName)
-    <-  .wait(50);
+    <-  .wait(500);
         .my_name(ME);
         .concat(ME, "pool", MyPool);
         .concat(MyPool, ID, ArtNameS);
+        .term2string(ArtNameT,ArtNameS);
         pool::makeArtifact(ArtNameS, "pools.ProposalPool", [], ArtId);
         pool::focus(ArtId);
         pool::open(ID,M);
         .print("Opening a proposal pool named ",ArtNameS,".");
-        .broadcast(tell,open_proposal_pool(ArtNameS,JobName));
+        .broadcast(tell,open_proposal_pool(ArtNameT,JobName));
     .
 
 +propose(AGENT,X,Y)[source(AGENT)]
@@ -41,7 +42,7 @@
     <-  .send(AGENT,achieve,do_the_job(ArtName));
     .
 
-+pool::not_chosen(AGENT)[artifact_name(ArArtNametId)]  // One for each not chosen participator
++pool::not_chosen(AGENT)[artifact_name(ArtName)]  // One for each not chosen participator
     <-  .my_name(ME);
         .send(AGENT,tell,not_chosen(ArtName));
     .

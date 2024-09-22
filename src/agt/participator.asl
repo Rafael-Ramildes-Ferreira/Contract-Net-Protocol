@@ -7,13 +7,13 @@ start.
         +cost(Y);        // Doesn't matter the scale
     .
     
-+open_proposal_pool(ArtNameS,JobName)[source(INIT)]
++open_proposal_pool(ArtName,JobName)[source(INIT)]
     :   focusing(_,_,JobName,_,_,_) &
         wcet(X) &
         cost(Y)
     <-  .my_name(ME);
         .send(INIT,tell,propose(ME,X,Y));
-        +pending_job(ArtNameS);
+        +pending_job(ArtName);
     .
 
 +!do_the_job(ArtName)[source(INIT)] 
