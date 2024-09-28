@@ -1,7 +1,8 @@
-start.
+!start.
 
-+start 
++!start 
     <-  .random(X);
+        // Could have used math.random(MAX)
         +wcet(X*3000);   // WCET \in [0, 3000 ms]
         .random(Y);
         +cost(Y);        // Doesn't matter the scale
