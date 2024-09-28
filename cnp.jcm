@@ -12,6 +12,9 @@
     September 16, 2024 - 10:48:33
 */
 
+// No need to compare different implementations in the report
+// He'll send an simple, pure-jason, implementation on Moodle
+
 mas cnp {
 
     agent init11: initiator.asl {

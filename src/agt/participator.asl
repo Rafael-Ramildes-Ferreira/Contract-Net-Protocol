@@ -1,5 +1,8 @@
 !start.
 
+// Could be using directories facilitators, like:
+// .df_register("sell(bicicleta)")
+
 +!start 
     <-  .random(X);
         // Could have used math.random(MAX)

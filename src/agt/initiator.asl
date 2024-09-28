@@ -1,3 +1,6 @@
+// Queries are used to find beliefs: ?belief(Arguments)
+// Could be using directories facilitators, like:
+// .df_registdf_searcher("sell(bicicleta)",L); .send(L,tell,cfp(bicicleta))
 
 +!call_proposals(ID,M)
     :   desired_job(JobName)
@@ -6,7 +9,7 @@
         .concat(ME, "pool", MyPool);
         .concat(MyPool, ID, ArtNameS);
         .term2string(ArtNameT,ArtNameS);
-        pool::makeArtifact(ArtNameS, "pools.ProposalPool", [], ArtId);
+        pool::makeArtifact(ArtNameS, "pools.ProposalPool", [], ArtId); // The professor didn't want artifacts to be used, but he allowed
         pool::focus(ArtId);
         pool::open(ID,M);
         .print("Opening a proposal pool named ",ArtNameS,".");
@@ -21,6 +24,14 @@
     <-  pool::propose(AGENT,X,Y);
     .
 
+// Could have used the function .min(P,price(job,P,Ag),Min)
+// Or 
+//    .findall(P, price(job,P,Ag), L); // Find all instances of the belief, and saves P in the list L
+//    .min(L,Min); // Gets the minimum value of L and saves on Min
+//    ?prince(job,Min,Ag); // To get the Ag(ent)
+// Of 
+//    .findall(p(P,Ag),price(job,P,Ag),L); // Find all instances of the belief, and saves P in the list L
+//    .min(L,p(Min,Ag)); // To get the Ag(ent)
 +pool::status("closed")[artifact_name(ArtName)]
     :   choosing_method("arrival")
     <-  .print("Closing ",ArtName,".");
