@@ -49,15 +49,21 @@ Defines the behavior of Participant agents. Each participant generates bids usin
 These classes simulate the execution of tasks. They accept execution time as an input and return either a successful or failed execution status based on the provided time.
 
 ## Testing and Results
+The system was tested using various configurations of initiators and participants, following the methods described in the previous sections:
 
-The system was tested using different configurations of Initiators and Participants:
-- **Initial Setup**: 6 Initiators and 20 Participants (10 instances each) with two different jobs. The system performed well under this setup, processing all tasks in 38 seconds.
-- **Scalability Tests**: Increasing the number of Initiators and Participants showed how the system's performance evolved. For example:
-  - 20 Initiators resulted in an increase in execution time to 63 seconds.
-  - Increasing the number of Participants to 20 reduced execution time to 24 seconds.
-  - Increasing the number of Initiators to 50 increased execution time to 167 seconds.
+- Initial Setup: The system was configured with 6 initiators and 20 participants (10 instances each) to handle two different tasks. After modifying the .java files (ProposalPool.java, JobNumber1.java, and JobNumber2.java) to log execution times, the system successfully processed all tasks in 38 seconds, from artifact creation to the completion of the last service.
 
-These tests demonstrated that the system's performance is highly influenced by the number of agents and the nature of the tasks.
+- Scalability Tests: Additional tests were conducted by varying the numbers of initiators, participants, and simultaneous jobs, as outlined below:
+
+1. Increased Initiators: Increasing the number of initiators to 30, with 15 assigned to Job1 and 15 to Job2, resulted in a total execution time of 2 minutes and 54 seconds. The number of jobs processed increased from 20 (initial setup) to 100 for Job1 and 45 for Job2.
+
+2. Increased Participants: Doubling the number of participants from 20 to 40 (with 20 instances each) reduced the total execution time to 2 minutes and 11 seconds. The initial proposal receipt time remained almost the same (around 2023 ms).
+
+3. Maximum Configuration: In a final test, 180 initiators were used (90 for each job), and participants were increased to 49 (24 for Job1 and 25 for Job2). The total execution time increased to 4 minutes and 13 seconds, with 89 jobs completed for Job2 and 212 for Job1.
+
+These tests demonstrated that the system's performance is significantly influenced by the number of agents and their interactions. A higher number of initiators tends to increase the total execution time, while having more participants than initiators can speed up the process. Additionally, since all participants share the same artifacts, parallelism is limited, which could create a bottleneck for CPU usage.
+
+Future improvements could explore the impact of parallelizing service execution or implementing mutual exclusion between services, especially to handle shared resources more efficiently.
 
 ## How to Run
 
